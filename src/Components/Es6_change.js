@@ -162,6 +162,16 @@ function sumUp2(...toAdd){
 
 console.log(sumUp2(100, 200, "10")); // Output = "30010".
 
+// forEach loop.
+const sumNumbers = (...args) => {
+   let result = 0;
+   args.forEach((number) => {
+       result += number
+   })
+   return result;
+}
+console.log(sumNumbers(1,2,3,4,5,6,7));
+
 //=====================Spread ... operator ============================
 
 // Note Spread (...) operator is opposite of Rest operator using same way but diffrent use case.
