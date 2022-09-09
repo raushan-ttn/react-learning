@@ -3,10 +3,10 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 
 const Navbar = () => {
     return (
-        <nav>
+        <nav className="main-menu">
             <ul>
                 <li>
-                    <link to="/">Home</link>
+                    <Link to="/">Home</Link>
                 </li>
                 <li>
                     <Link to="/user-form">User Form</Link>
