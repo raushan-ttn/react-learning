@@ -14,7 +14,8 @@ function App() {
     </div>
   );
 } */
-
+import logo from './logo.svg';
+import './App.css';
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout";
