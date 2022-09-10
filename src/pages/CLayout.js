@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 
-const Layout = () => {
+const CLayout = () => {
     return (
         <div className="page outer-layout">
            <div className="menu"><Navbar /></div>
@@ -11,4 +11,4 @@ const Layout = () => {
     );
 };
 
-export default Layout;
+export default CLayout;

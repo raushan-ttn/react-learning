@@ -18,11 +18,12 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./pages/Layout";
+import Layout from './pages/CLayout';
 import Home from "./pages/Home";
 import UserForm from "./pages/UserForm";
-import UserList from "./pages/UserList";
-import NoPage from './pages/NoPage';
+import UserList from "./pages/UserListData";
+import NoPage from './pages/NoPageData';
+import ArrayExample from './pages/ArrayExample';
 
 function App(){
  return(
@@ -32,6 +33,7 @@ function App(){
         <Route index element={<Home />} />
         <Route path="/user-form" element={<UserForm />} />
         <Route path="/user-list" element={<UserList />} />
+        <Route path="/array-example" element={<ArrayExample />} />
         <Route path="*" element={<NoPage />} />
       </Route>
     </Routes>

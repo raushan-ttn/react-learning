@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
     return (
@@ -13,6 +13,9 @@ const Navbar = () => {
                 </li>
                 <li>
                     <Link to="/user-list">User List</Link>
+                </li>
+                <li>
+                    <Link to="/array-example">Array Example</Link>
                 </li>
             </ul>
         </nav>
