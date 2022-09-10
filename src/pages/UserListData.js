@@ -1,12 +1,12 @@
 import React from "react";
 
-const UserList = () => {
+const UserListData = () => {
     return (
         <h1> User Listing page</h1>
     )
 }
 
-export default UserList;
+export default UserListData;
 
 
 

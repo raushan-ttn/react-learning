@@ -54,3 +54,10 @@
   color: wheat;
   text-decoration: none;
 }
+
+.p-tag span{
+  text-align: left;
+}
+.customerName{
+width: 200px;
+}
