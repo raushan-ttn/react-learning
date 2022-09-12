@@ -20,17 +20,27 @@ const ExpensePage = () => {
             id: 'e4',
             title: 'New Desk (Wooden)',
             amount: 450,
-            date: new Date(2021, 5, 12),
+            date: new Date(2022, 5, 12),
         },
     ];
+
+    //Dynamic pass props in component.
+    const MyExpenses = expenses.map((expense) => {
+        return (
+            <ExpenseItem key={expense.id} title={expense.title} amount={expense.amount} date={expense.date} />
+        )
+    })
+
     //console.log(expenses[0].date.toISOString());
     return (
         <div className="expenses">
             <h1>Expense Items are here:</h1>
 
-            <ExpenseItem title={expenses[0].title} amount={expenses[0].amount} date={expenses[0].date} />
+            {/* <ExpenseItem title={expenses[0].title} amount={expenses[0].amount} date={expenses[0].date} />
             <ExpenseItem title={expenses[1].title} amount={expenses[1].amount} date={expenses[1].date} />
-            <ExpenseItem title={expenses[2].title} amount={expenses[2].amount} date={expenses[2].date} />
+            <ExpenseItem title={expenses[2].title} amount={expenses[2].amount} date={expenses[2].date} /> */}
+
+            {MyExpenses}
         </div>
     )
 }
