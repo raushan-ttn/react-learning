@@ -30,12 +30,26 @@ const ExpensePage = () => {
         return (
             <ExpenseItem key={expense.id} title={expense.title} amount={expense.amount} date={expense.date} />
         )
-    })
+    });
 
+    //call data from child to parent reference.
+    const saveNewExpenseHandler = (enteredNewExpense) => {
+        const expenseData = {
+            ...enteredNewExpense,
+            id: Math.random().toString(),
+        };
+        console.log(expenseData);
+    }
+
+    // print data as string.
     //console.log(expenses[0].date.toISOString());
     return (
         <>
-            <NewExpense />
+            <NewExpense onSaveNewExpense={saveNewExpenseHandler} />
+            {/* Note: onSaveNewExpense is custom attribute to pass data
+            in parent component,like <input> is pre-define component in HTML and it's accept multiple functions like (onChange, onClick)
+Same as we can create Own attribute (onSaveNewExpense (we can use any name here)). to pass data in child to parent component.
+             */}
             <Card className="expenses">
                 <h1>Expense Items are here:</h1>
                 {/* <ExpenseItem title={expenses[0].title} amount={expenses[0].amount} date={expenses[0].date} />

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css";
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => { // We can get our custom props values in custom component.
 
     const [enterdTitle, setEnteredTitle] = useState('');
     const [enterdAmount, setEnteredAmount] = useState('');
@@ -56,7 +56,10 @@ const ExpenseForm = () => {
             amount: enterdAmount,
             date: new Date(enterdDate)
         };
-        console.log(expenseData);
+        // console.log(expenseData);
+        // Call custom attribute as function like <input onChange it's predefine component.
+        props.onSaveExpenseData(expenseData);
+
         // Two way binding,if we change the state then value will be automatically changed,this is very important in form submission.
         setEnteredTitle('');
         setEnteredAmount('');
