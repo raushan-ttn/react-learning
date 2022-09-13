@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import ExpenseItem from "../Components/self-learn/Expense/ExpenseItem";
 import Card from "../Components/self-learn/UI/Card";
 import NewExpense from "../Components/self-learn/NewExpense/NewExpense";
+
 const ExpensePage = () => {
     const expenses = [
         {
@@ -25,12 +26,7 @@ const ExpensePage = () => {
         },
     ];
 
-    //Dynamic pass props in component.
-    const MyExpenses = expenses.map((expense) => {
-        return (
-            <ExpenseItem key={expense.id} title={expense.title} amount={expense.amount} date={expense.date} />
-        )
-    });
+    const [newlyAddedExpense, newlyAddedExpenseSet] = useState(expenses);
 
     //call data from child to parent reference.
     const saveNewExpenseHandler = (enteredNewExpense) => {
@@ -38,9 +34,21 @@ const ExpensePage = () => {
             ...enteredNewExpense,
             id: Math.random().toString(),
         };
-        console.log(expenseData);
+        // Set data in state. for use in another component.
+        newlyAddedExpenseSet([
+            ...newlyAddedExpense,
+            expenseData
+        ]);
     }
 
+    //Dynamic pass props in component.
+    const MyExpenses = newlyAddedExpense.map((expense) => {
+        return (
+            <ExpenseItem key={expense.id} title={expense.title} amount={expense.amount} date={expense.date} />
+        );
+    });
+
+    // console.log(newlyAddedExpense,'newlyAddedExpense');
     // print data as string.
     //console.log(expenses[0].date.toISOString());
     return (
