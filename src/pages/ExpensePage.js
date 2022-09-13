@@ -1,6 +1,7 @@
 import React from "react";
-import ExpenseItem from "../Components/self-learn/ExpenseItem";
-
+import ExpenseItem from "../Components/self-learn/Expense/ExpenseItem";
+import Card from "../Components/self-learn/UI/Card";
+import NewExpense from "../Components/self-learn/NewExpense/NewExpense";
 const ExpensePage = () => {
     const expenses = [
         {
@@ -33,15 +34,16 @@ const ExpensePage = () => {
 
     //console.log(expenses[0].date.toISOString());
     return (
-        <div className="expenses">
-            <h1>Expense Items are here:</h1>
-
-            {/* <ExpenseItem title={expenses[0].title} amount={expenses[0].amount} date={expenses[0].date} />
+        <>
+            <NewExpense />
+            <Card className="expenses">
+                <h1>Expense Items are here:</h1>
+                {/* <ExpenseItem title={expenses[0].title} amount={expenses[0].amount} date={expenses[0].date} />
             <ExpenseItem title={expenses[1].title} amount={expenses[1].amount} date={expenses[1].date} />
             <ExpenseItem title={expenses[2].title} amount={expenses[2].amount} date={expenses[2].date} /> */}
-
-            {MyExpenses}
-        </div>
+                {MyExpenses}
+            </Card>
+        </>
     )
 }
 
