@@ -47,7 +47,7 @@ const ExpensePage = () => {
         });
 
         // Add newly added data in list with filter without page refresh.
-        const newAddedData =[expenseData, ...newlyAddedExpense];
+        const newAddedData = [expenseData, ...newlyAddedExpense];
         const filteredExpenseData = newAddedData.filter(expense1 => {
             return expense1.date.getFullYear().toString() == filteredYear;
         });
@@ -101,7 +101,9 @@ Same as we can create Own attribute (onSaveNewExpense (we can use any name here)
                 {/* <ExpenseItem title={expenses[0].title} amount={expenses[0].amount} date={expenses[0].date} />
             <ExpenseItem title={expenses[1].title} amount={expenses[1].amount} date={expenses[1].date} />
             <ExpenseItem title={expenses[2].title} amount={expenses[2].amount} date={expenses[2].date} /> */}
-                {MyExpenses}
+
+                {/* Add conditions on listing  */}
+                {MyExpenses.length === 0 ? <h2 className="bold">No Expense found</h2> : MyExpenses}
             </Card>
         </>
     )
