@@ -17,6 +17,7 @@ const CourseInput = (props) => {
       setIsValid(false);
       return;
     }
+    setIsValid(true);
     props.onAddGoal(enteredValue);
     // set default value blank after form submit.
     setEnteredValue('');
@@ -25,8 +26,9 @@ const CourseInput = (props) => {
   return (
     <form onSubmit={formSubmitHandler}>
       <div className="form-control">
-        <label style={{"color" : !isvalid ? "red" : "black"}}>Course Goal</label>
-        <input type="text" value={enteredValue} onChange={goalInputChangeHandler} />
+        {/* set Dynamic styles over element */}
+        <label style={{ "color": !isvalid ? "red" : "black" }}>Course Goal</label>
+        <input style={{ "border": !isvalid ? "1px solid red" : "1px solid black" }} type="text" value={enteredValue} onChange={goalInputChangeHandler} />
       </div>
       <Button type="submit">Add Goal</Button>
     </form>
