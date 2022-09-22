@@ -103,7 +103,10 @@ Same as we can create Own attribute (onSaveNewExpense (we can use any name here)
             <ExpenseItem title={expenses[2].title} amount={expenses[2].amount} date={expenses[2].date} /> */}
 
                 {/* Add conditions on listing  */}
-                {MyExpenses.length === 0 ? <h2 className="bold">No Expense found</h2> : MyExpenses}
+                {/* {MyExpenses.length === 0 ? <h2 className="bold">No Expense found</h2> : MyExpenses} */}
+                {/* Second way */}
+                {MyExpenses.length === 0 && <h2 className="bold">No Expense found</h2>}
+                {MyExpenses.length > 0 && MyExpenses}
             </Card>
         </>
     )
