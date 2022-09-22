@@ -3,6 +3,8 @@ import ExpenseItem from "../Components/self-learn/Expense/ExpenseItem";
 import Card from "../Components/self-learn/UI/Card";
 import NewExpense from "../Components/self-learn/NewExpense/NewExpense";
 import FilterExpense from "../Components/self-learn/NewExpense/FilterExpense";
+import ExpenseChart from "../Components/Chart/ExpenseChart";
+
 const ExpensePage = () => {
     const expenses = [
         {
@@ -23,6 +25,12 @@ const ExpensePage = () => {
             title: 'New Desk (Wooden)',
             amount: 450,
             date: new Date(2022, 5, 12),
+        },
+        {
+            id: 'e4',
+            title: 'New Desk1 (Wooden)',
+            amount: 200,
+            date: new Date(2022, 4, 12),
         },
     ];
     // Define state to manage filters.
@@ -87,6 +95,8 @@ const ExpensePage = () => {
         );
     });
 
+
+
     // console.log(newlyAddedExpense,'newlyAddedExpense');
     return (
         <>
@@ -98,6 +108,8 @@ Same as we can create Own attribute (onSaveNewExpense (we can use any name here)
             <Card className="expenses">
                 <h1>Expense Items are here:</h1>
                 <FilterExpense selected={filteredYear} onChangeFilter={filterChangeHandler} />
+                {console.log(filteredExpense, 'filteredExpense')}
+                <ExpenseChart expenses={filteredExpense} />
                 {/* <ExpenseItem title={expenses[0].title} amount={expenses[0].amount} date={expenses[0].date} />
             <ExpenseItem title={expenses[1].title} amount={expenses[1].amount} date={expenses[1].date} />
             <ExpenseItem title={expenses[2].title} amount={expenses[2].amount} date={expenses[2].date} /> */}
