@@ -15,6 +15,7 @@ const CourseGoal = () => {
             id: Math.random(),
             text: props,
         }
+        // Update state along with update list.
         SetCourseData((preSaveData) => {
             return [newlyAddedCourse, ...preSaveData];
         })
