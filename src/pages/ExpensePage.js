@@ -18,7 +18,7 @@ const ExpensePage = () => {
             id: 'e3',
             title: 'Car Insurance',
             amount: 294.67,
-            date: new Date(2021, 2, 28),
+            date: new Date(2021, 3, 28),
         },
         {
             id: 'e4',
@@ -27,7 +27,7 @@ const ExpensePage = () => {
             date: new Date(2022, 5, 12),
         },
         {
-            id: 'e4',
+            id: 'e5',
             title: 'New Desk1 (Wooden)',
             amount: 200,
             date: new Date(2022, 4, 12),

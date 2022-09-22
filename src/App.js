@@ -25,6 +25,7 @@ import UserList from "./pages/UserListData";
 import NoPage from './pages/NoPageData';
 import ArrayExample from './pages/ArrayExample';
 import ExpensePage from './pages/ExpensePage';
+import CourseGoal from './pages/CourseGoal';
 
 function App(){
  return(
@@ -36,6 +37,7 @@ function App(){
         <Route path="/user-list" element={<UserList />} />
         <Route path="/array-example" element={<ArrayExample />} />
         <Route path="/expense-item" element={<ExpensePage />} />
+        <Route path="/courses" element={<CourseGoal />} />
         <Route path="*" element={<NoPage />} />
       </Route>
     </Routes>

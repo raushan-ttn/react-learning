@@ -53,7 +53,7 @@ const ExpenseForm = (props) => { // We can get our custom props values in custom
 
         const expenseData = {
             title: enterdTitle,
-            amount: enterdAmount,
+            amount: +enterdAmount, // enforce as number conversion
             date: new Date(enterdDate)
         };
         // console.log(expenseData);
