@@ -8,6 +8,9 @@ const CourseInput = (props) => {
   const [isvalid, setIsValid] = useState(true);
 
   const goalInputChangeHandler = event => {
+    if (event.target.value.trim().length > 0) {
+      setIsValid(true);
+    }
     setEnteredValue(event.target.value);
   };
 
@@ -17,7 +20,6 @@ const CourseInput = (props) => {
       setIsValid(false);
       return;
     }
-    setIsValid(true);
     props.onAddGoal(enteredValue);
     // set default value blank after form submit.
     setEnteredValue('');
@@ -26,9 +28,14 @@ const CourseInput = (props) => {
   return (
     <form onSubmit={formSubmitHandler}>
       <div className="form-control">
-        {/* set Dynamic styles over element */}
-        <label style={{ "color": !isvalid ? "red" : "black" }}>Course Goal</label>
-        <input style={{ "border": !isvalid ? "1px solid red" : "1px solid black" }} type="text" value={enteredValue} onChange={goalInputChangeHandler} />
+        {/* set Dynamic inline styles over element */}
+
+        {/* <label style={{ "color": !isvalid ? "red" : "black" }}>Course Goal</label> */}
+        {/* <input style={{ backgroundColor: !isvalid ? "red" : "black", background: !isvalid ? "salvon" : "transparent" }} type="text" value={enteredValue} onChange={goalInputChangeHandler} /> */}
+
+        {/* Dynamic classes add */}
+        <label className={`form-control ${!isvalid ? "invalid" : '' }`}>Course Goal</label>
+        <input className={`form-control ${!isvalid ? "invalid-back" : ''}`} type="text" value={enteredValue} onChange={goalInputChangeHandler} />
       </div>
       <Button type="submit">Add Goal</Button>
     </form>
