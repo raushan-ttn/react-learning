@@ -42,4 +42,6 @@ const CourseInput = (props) => {
   );
 };
 
+// Styled-component will read later, but i have installed in project.
+
 export default CourseInput;
