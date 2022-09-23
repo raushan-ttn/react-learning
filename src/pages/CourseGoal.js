@@ -12,9 +12,10 @@ const CourseGoal = () => {
     // Add new row after submit.
     const SaveGoalData = (props) => {
         const newlyAddedCourse = {
-            id: Math.random(),
+            id: Math.random().toString(),
             text: props,
         }
+        console.log(newlyAddedCourse,"newlyAddedCourse");
         // Update state along with update list.
         SetCourseData((preSaveData) => {
             return [newlyAddedCourse, ...preSaveData];
