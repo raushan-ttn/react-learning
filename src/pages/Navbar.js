@@ -23,6 +23,9 @@ const Navbar = () => {
                 <li>
                     <Link to="/courses">Courses</Link>
                 </li>
+                <li>
+                    <Link to="/life-cycle">Life Cycle</Link>
+                </li>
             </ul>
         </nav>
     )

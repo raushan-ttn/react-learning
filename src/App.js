@@ -26,6 +26,7 @@ import NoPage from './pages/NoPageData';
 import ArrayExample from './pages/ArrayExample';
 import ExpensePage from './pages/ExpensePage';
 import CourseGoal from './pages/CourseGoal';
+import LifeCycleExample from './pages/LifeCycleExample';
 
 function App(){
  return(
@@ -38,6 +39,7 @@ function App(){
         <Route path="/array-example" element={<ArrayExample />} />
         <Route path="/expense-item" element={<ExpensePage />} />
         <Route path="/courses" element={<CourseGoal />} />
+        <Route path="/life-cycle" element={<LifeCycleExample/>} />
         <Route path="*" element={<NoPage />} />
       </Route>
     </Routes>
