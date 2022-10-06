@@ -32,17 +32,18 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
-.outer-layout{
+.outer-layout {
   margin: 0 auto;
   text-align: center;
 }
 
-.main-menu ul li{
+.main-menu ul li {
   list-style: none;
   display: inline-block;
   padding: 10px;
@@ -50,14 +51,23 @@
   background: rebeccapurple;
   text-align: center;
 }
-.main-menu ul li a{
+
+.main-menu ul li a {
   color: wheat;
   text-decoration: none;
 }
 
-.p-tag span{
+.p-tag span {
   text-align: left;
 }
-.customerName{
-width: 200px;
+
+.customerName {
+  width: 200px;
+}
+
+.protal-component {
+  text-align: center;
+  color: red;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: large;
 }
