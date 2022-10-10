@@ -11,9 +11,10 @@ const Home = () => {
             {/* We can also use <div></div> to merge multiple html lines in one tag but here one addtion div will generate.
 But above method will not create, see UserListData and NoPageData component. */}
             <h1>This is our homepage.</h1>
+            {/* Define  "start": "PORT=3006  react-scripts start", in package.json to run multiple project in local. */}
             <Printstar />
-            {ReactDOM.createPortal(<AnotherPortals />, document.getElementById("another_root"))};
             <AddUserForm />
+            {ReactDOM.createPortal(<AnotherPortals />, document.getElementById("another_root"))};
         </Wrapper>
     )
 }
