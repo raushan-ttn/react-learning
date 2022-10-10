@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Printstar, { AnotherPortals } from "../Components/Debugger_help";
+import Printstar, { AnotherPortals, AddUserForm } from "../Components/Debugger_help";
 import Wrapper from "../Helper/Wrapper";
 
 const Home = () => {
@@ -12,7 +12,8 @@ const Home = () => {
 But above method will not create, see UserListData and NoPageData component. */}
             <h1>This is our homepage.</h1>
             <Printstar />
-           { ReactDOM.createPortal(<AnotherPortals />, document.getElementById("another_root"))};
+            {ReactDOM.createPortal(<AnotherPortals />, document.getElementById("another_root"))};
+            <AddUserForm />
         </Wrapper>
     )
 }
