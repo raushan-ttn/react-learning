@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import Printstar, { AnotherPortals, AddUserForm } from "../Components/Debugger_help";
 import Wrapper from "../Helper/Wrapper";
@@ -11,13 +11,22 @@ const Home = () => {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+    useEffect(() => {
+        if (localStorage.getItem("isLoggedIn")) {
+            setIsLoggedIn(true);
+        }
+    }, []); // Without adding dependancy/[] in useEffect it run only once on page load.
+
+
     const loginHandler = (email, password) => {
         // We should of course check email and password
         // But it's just a dummy/ demo anyways
+        localStorage.setItem("isLoggedIn", 1);
         setIsLoggedIn(true);
     };
 
     const logoutHandler = () => {
+        localStorage.removeItem("isLoggedIn");
         setIsLoggedIn(false);
     };
 
