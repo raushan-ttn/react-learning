@@ -15,26 +15,44 @@ const Login = (props) => {
     console.log("RUN Everytime"); // Run every time when this componenent will update.but if we pass blank [] depenedany then it will run only once component mount time.
   });
 
+  // This use effect have problem, once email and password is valid and then user add extra char in email or password the whole
+  // effect (side effect) function will reRun then that case we will manage depancy on validity of email/pass not the variable.
+  // Example in second way.
+  /* useEffect(() => {
+     const identifire = setTimeout(() => {
+       console.log("Checking from Validity....");
+       setFormIsValid( //  this called side effect function, because this will run after state update inside useEffect.
+         enteredEmail.includes('@') && enteredPassword.trim().length > 6
+       );
+     }, 500)
+
+     // We can also return function like anonymous arrow funtion.this is known as cleanup
+     return () => {
+       console.log("CLEAN UP");
+       clearTimeout(identifire); // clear the last timer,
+     } // this function will run before setFormIsValid in next time. when ever useEffect called and run setFormIsValid
+     // cleanup funtion will run before next sideeffect function (setFormIsValid) except firsttime.
+
+   }, [enteredEmail, enteredPassword]);// Without adding dependancy/[] in useEffect it run only once on page load/ or component mount time.
+   // When we add dependancy in useEffect, that means useEffect will run each time when dependancy will update.
+   // Rerun when dependancy will change.
+   // useEffect will not working incase of, http request, local storage, timer, instead we are updating the state.
+   //
+ */
+
+  // Second way. In this way once validation will true then not execute useEffect,
   useEffect(() => {
     const identifire = setTimeout(() => {
       console.log("Checking from Validity....");
-      setFormIsValid( //  this called side effect function, because this will run after state update inside useEffect.
-        enteredEmail.includes('@') && enteredPassword.trim().length > 6
+      setFormIsValid(
+        emailIsValid && passwordIsValid
       );
     }, 500)
-
-    // We can also return function like anonymous arrow funtion.this is known as cleanup
     return () => {
       console.log("CLEAN UP");
-      clearTimeout(identifire); // clear the last timer,
-    } // this function will run before setFormIsValid in next time. when ever useEffect called and run setFormIsValid
-    // cleanup funtion will run before next sideeffect function (setFormIsValid) except firsttime.
-
-  }, [enteredEmail, enteredPassword]);// Without adding dependancy/[] in useEffect it run only once on page load/ or component mount time.
-  // When we add dependancy in useEffect, that means useEffect will run each time when dependancy will update.
-  // Rerun when dependancy will change.
-  // useEffect will not working incase of, http request, local storage, timer, instead we are updating the state.
-  //
+      clearTimeout(identifire);
+    }
+  }, [emailIsValid, passwordIsValid]);
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
