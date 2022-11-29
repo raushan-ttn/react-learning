@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import Printstar, { AnotherPortals, AddUserForm } from "../Components/Debugger_help";
 import Wrapper from "../Helper/Wrapper";
 
+import AuthContext from "../ExampleContext/auth-context";
 import MainHeader from "../Helper/Wrapper/MainHeader/MainHeader";
 import Login from "../Helper/Login/Login";
 import Home1 from "../Helper/Home/Home";
@@ -43,14 +44,24 @@ But above method will not create, see UserListData and NoPageData component. */}
             {ReactDOM.createPortal(<AnotherPortals />, document.getElementById("another_root"))}
             <h2> Login component</h2>
             <React.Fragment>
-                <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} />
-                <main>
-                    {!isLoggedIn && <Login onLogin={loginHandler} />}
-                    {isLoggedIn && <Home1 onLogout={logoutHandler} />}
-                </main>
+               <AuthContext.Provider value={
+                {
+                    isLoggedIn:isLoggedIn
+                }
+               }>  {/* provided contains value of context. but its not working with default value, if we need change value then provide can help.  */}
+                {/* We can listen context with two ways, (1) React Hooks (2) <AuthContext.Consumer>, consumer way is very elegant, so need to use hooks to get context.*/}
+                    <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} />
+                    <main>
+                        {!isLoggedIn && <Login onLogin={loginHandler} />}
+                        {isLoggedIn && <Home1 onLogout={logoutHandler} />}
+                    </main>
+                </AuthContext.Provider>
             </React.Fragment>
         </Wrapper>
     )
 }
 
 export default Home;
+
+// Most cases we need to use props to pass data in component, becoz props is your mechanism to configure component and make them reusable, Only if we have something to forward lots of component and forwading to a component (something very specific) that case we need to use context, otherwise props is better way to pass data to component.
+
