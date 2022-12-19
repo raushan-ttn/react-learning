@@ -422,7 +422,7 @@ var sum = function (a, b, c) {
         sumTwoNumber: function () {
             return a + b;
         },
-        sumThreeNumber: function(){
+        sumThreeNumber: function () {
             return a + b + c;
         }
     };
@@ -439,13 +439,200 @@ console.log(store1.sumTwoNumber());
 console.log(store1.sumThreeNumber());
 // We can also use same function n number of times with diffrent parameters and its work properly.
 
+/***********************************Async JS*************************************/
+// Callbacks, Promises, Async & Await
+// Example #1
+//*************
+const datas = [
+    { name: "Ram", profession: "SE" },
+    { name: "Shayam", profession: "SE" }
+];
+
+function getDatas() {
+    setTimeout(() => {
+        let output = "";
+        datas.forEach((data, index) => {
+            output += `<li>${data.name}</li>`; // Use $ to get Dynamic value of variable inside template literals.
+        })
+        document.body.innerHTML = output;
+    }, 1000)
+}
+
+function createDatas(newdata) {
+    setTimeout(() => {
+        datas.push(newdata);
+    }, 2000);
+}
+
+getDatas();
+createDatas({ name: "Vivek", profession: "SE" });
+
+// Issue of above example getDatas have 1 second timeout and createDatas have 2 second timeout so that newdata not append in datas. we can solve this problem to increase timeout in getDatas. But we can also solve this with help of "Callbacks"
+
+const datas = [
+    { name: "Ram", profession: "SE" },
+    { name: "Shayam", profession: "SE" }
+];
+
+function getDatas() {
+    setTimeout(() => {
+        let output = "";
+        datas.forEach((data, index) => {
+            output += `<li>${data.name}</li>`; // Use $ to get Dynamic value of variable inside template literals.
+        })
+        document.body.innerHTML = output;
+    }, 1000)
+}
+
+function createDatas(newdata, callbacks) {
+    setTimeout(() => {
+        datas.push(newdata);
+        callbacks(); // Name can be anything like callback1 ...
+    }, 2000);
+}
+
+createDatas({ name: "Vivek", profession: "SE" }, getDatas);
+
+// Here we have solve above issue with callback, (pass getDatas as callback inside createDatas and after push new object in datas we will call getDatas. here without changing timeout value we can use code. this is main use of callbacks. "we can pass whole function as argument in another function".
 
 
+//***********************Promises*******************/
+// The Promise object represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
+// Example #1
 
+const datas = [
+    { name: "Ram", profession: "SE" },
+    { name: "Shayam", profession: "SE" }
+];
 
+function getDatas() {
+    setTimeout(() => {
+        let output = "";
+        datas.forEach((data, index) => {
+            output += `<li>${data.name}</li>`; // Use $ to get Dynamic value of variable inside template literals.
+        })
+        document.body.innerHTML = output;
+    }, 1000)
+}
 
+function createDatas(newdata) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            datas.push(newdata);
+            let error = false;
+            if (!error) {
+                resolve();
+            } else {
+                reject("Kuch to error hai...");
+            }
+        }, 2000);
+    });
 
+}
 
+createDatas({ name: "Vivek", profession: "SE" })
+    .then(getDatas)
+    .catch(err => console.log(err));
 
+// if promiss return true then, then will call, otherwise catch will handle errors.
+// We can also use Promise inplace of callbacks.
+// We can call multiple then() one by one and also use catch for handle errors.
+// We can create new Promise with help of Primise keyword/function, but Async/Await always returns Promise without Promise keyword.
 
+//*********************** Async & Await *******************/
 
+// In (Async & Await) always return Promise and call function run asynchronously and not wait for completion.
+
+async function datas(){
+    console.log("first console");
+    const response = await fetch('https://api.github.com/users');
+        console.log("API called");
+        const users = await response.json();
+        console.log("users resolved");
+        return users;
+}
+
+console.log("Before calling async");
+let a = datas();
+console.log("After calling function datas");
+a.then(data => console.log(data)).catch(err => console.log(err));
+console.log("Run this file in HTML file, brower console not support fetch due to cors error");
+
+// When we add/write "async" before name of function then whole function return Promise.
+// When cursor/pointer read "await" inside "async function" cursor/pointer move/return back from function and read next lines of js file, and after sometime back inside  "async function" and check response of await.
+// Means code will wait for "await" function complete and run after completing rest of the task.
+
+//*************************** Error Handling (try / catch block) *************************/
+
+try {
+    // writeSomeToGetErrorInCode
+    function
+} catch (error) {
+    throw new Error(error); // throw error if we get in code.
+    console.log("Testing try/catch." + error); // show error in console as text not error.
+}
+finally{
+    console.log("Finally will always run, if executed 'try' or 'catch' any case.");
+}
+// With the help of try/catch we can track error and stop code break.
+
+//****************************** Apply , call and Bind *****************************/
+
+// Example #1
+
+let userDetails = {
+    name: "Raushan Tiwari",
+    age: 32,
+    designation: "Software Engineer",
+
+}
+
+let printDetails = function(state, country) {
+    console.log(this.name +" "+ state +" "+ country);
+}
+printDetails.call(userDetails, "Noida", "India"); // We can pass any number of arguments in call();
+
+let userDetails2 = {
+    name: "Anuj Tiwari",
+    age: 25,
+    designation: "Software Engineer",
+}
+// function borrowing
+printDetails.call(userDetails2,"delhi","India");
+// call is magic function: With the call() method, you can write a method that can be used on different objects.
+// we do not need to define function (printDetails) each time for same type of use case (object), just share diffrent object
+// with help of call function.
+
+//# Example #1 (Apply)
+let userDetails = {
+    name: "Raushan Tiwari",
+    age: 32,
+    designation: "Software Engineer",
+
+}
+
+let printDetails = function (state, country) {
+    console.log(this.name + " " + state + " " + country);
+}
+printDetails.apply(userDetails, ["Noida", "India"]);
+
+// We can also use "Apply" instead of "call", both have minor diffrence based on use case we can use.
+
+// Diffrence between call and apply : we can pass n number of arguments in call(), but we can pass list (array) as argument. both have same output.
+
+// Example #1 (bind)
+
+let userDetails = {
+    name: "Raushan Tiwari",
+    age: 32,
+    designation: "Software Engineer",
+
+}
+let printDetails = function (state, country) {
+    console.log(this.name + " " + state + " " + country);
+}
+let funcStore = printDetails.bind(userDetails, "Noida", "India");
+funcStore();
+console.log(funcStore);
+
+// With the help of bind() we can create copy of our function and we can invoke later.
