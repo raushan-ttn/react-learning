@@ -688,3 +688,68 @@ console.timeEnd();
 
 
 /********************************* Debouncing ************************************/
+
+// Debouncing not provied by javaScript, but we can achive via setTimeOut function.
+// Example: autocomplete, window resizing, scrolling etc... many more time we can use debouncing,
+// to reduce unwanted function call.
+
+// Example #1 --- Autocomplete example
+// HTML File
+<html>
+    <body>
+        <input type="text" id="search" onchange="getData()" />
+    </body>
+</html>
+
+// JS
+
+let counter = 0;
+function getData() {
+    console.log("fetching Data " + counter++);
+}
+
+function myDebounce(call, d) { // clouser example function return function.
+    let timer;
+    return function (...args) {
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(() => {
+            call();
+        }, d);
+    }
+}
+
+const betterFunction = myDebounce(getData, 1000); // function return function, isly variable me store karke inside function (returned function) ko call karna padega.
+
+/******************** Currying ************************/
+// Normal way
+
+function Addtion(a,b,c){
+    return a+b+c;
+}
+Addtion(3,4,5); //Output : 12
+
+// Example #1 Clouser-
+function Addtion(a) {
+    return function (b) {
+        return function (c) {
+            return a + b + c;
+        }
+    }
+}
+
+// Old techniques
+let a1 = Addtion(2);
+let b1 = a1(4);
+let c1 = b1(5);
+
+console.log(c1); // output : 11
+
+// jab function ek dusra function return karta hai to uske result ko variable me store karke , usse inside function ko call karte hai, isi ko clouser bolte hai and all variable will available withing all inside functions scope this is called laxical scope.
+
+//New techniques (currying)
+
+let a1 = Addtion(2)(4)(5); // Output: 11
+
+
+/***************************** Infinite currying ***************************/
+
