@@ -392,9 +392,10 @@ alert(str.trim());
 
 
 //***************************************** Clousers **********************************/
- // lexical scope:
+// Closures are an ability of a function to remember the variables and functions that are declared in its outer scope.
+// lexical scope:
 
- A closure is the combination of a function bundled together(enclosed) with references to its surrounding state(the lexical environment).In other words, a closure gives you access to an outer function's scope from an inner function.
+// A closure is the combination of a function bundled together(enclosed) with references to its surrounding state(the lexical environment).In other words, a closure gives you access to an outer function's scope from an inner function.
 
 // Another words : call function inside function.
 
@@ -721,12 +722,13 @@ function myDebounce(call, d) { // clouser example function return function.
 const betterFunction = myDebounce(getData, 1000); // function return function, isly variable me store karke inside function (returned function) ko call karna padega.
 
 /******************** Currying ************************/
+// Currying is an advanced technique to transform a function of arguments n, to n functions of one or fewer arguments.
 // Normal way
 
-function Addtion(a,b,c){
-    return a+b+c;
+function Addtion(a, b, c) {
+    return a + b + c;
 }
-Addtion(3,4,5); //Output : 12
+Addtion(3, 4, 5); //Output : 12
 
 // Example #1 Clouser-
 function Addtion(a) {
@@ -753,3 +755,125 @@ let a1 = Addtion(2)(4)(5); // Output: 11
 
 /***************************** Infinite currying ***************************/
 
+// Example #1
+
+function add(a) {
+    return function (b) {
+        if (b) {
+            return add(a + b);
+        }
+        return a;
+    }
+}
+console.log(add(4)(5)(6)(7)(8)(9)(9)());
+
+/**************************Hoisting in JavaScript ************************/
+// Hoisting is the default behaviour of javascript where all the variable and function declarations are moved on top.
+// Hoisting is mainly related to memory management. "Even before the code start executing memory will allocating to each and every variable and functions."
+
+console.log(x); // output: undefined (undefined is kind of placeholder when no value defined for any variable then JS will defined variable value in memory as undefined.)
+
+console.log(getName()); //output: Hello world
+
+var x = 7;
+
+function getName() {
+    console.log("Hello world");
+}
+
+// When we add debugger on line number 1 in JS (browser source file) file here no code will executed but global Scope will display and in console and we can all variable and function are defined in global scope and memory.
+
+/***************** Event Bubbling & Capturing *******************/
+
+// Stop Propagation, Immediate Propagation & Prevent Default.
+
+<html>
+    <title>Event Bubbling & Capturing</title>
+    <body>
+        <div>
+            <button>Click Me</button>
+        </div>
+    </body>
+
+</html>
+
+// Event bubbling is working from child to parent (button->div->body->html)
+// Example #1
+var div = document.querySelector("div");
+
+div.addEventListener("click", () => {
+    console.log('div');
+});
+
+// output : div
+// Here we will click on button, but button propagate the event to own parent(div) and div has eventlistner, this is called event bubbling.
+// Example #2
+var div = document.querySelector("div");
+var button = document.querySelector("button");
+
+div.addEventListener("click", () => {
+    console.log('div');
+});
+
+button.addEventListener("click", () => {
+    console.log('button');
+});
+
+// Output: button div (first child will run and then parent will run)
+
+//******** Capturing : Capturing is working parent to child.
+
+// Example #1
+var div = document.querySelector("div");
+var button = document.querySelector("button");
+
+div.addEventListener("click", () => {
+    console.log('div');
+},true); // if we pass true then it will work as capturing otherwise bubbling
+
+button.addEventListener("click", () => {
+    console.log('button');
+},true);
+
+// OutPut: div button (First parent and then child)
+
+//************* Stop Propagation
+// Example: #1
+var button = document.querySelector("button");
+
+button.addEventListener("click", (event) => {
+    event.stopImmediatePropagation()
+    event.stopPropagation(); // if we want to click only on button not parent div, then we need to do.
+    console.log('button');
+});
+// if we want to click only on button not parent div or (other parents), then we need to StopPropagation on button click.
+
+//************* Immediate Propagation : if we have 3 event (click) listner on same button and if we want stop 3'rd event listner then we need to add evnt.stopImmediatePropagation() in second listner, then 3'rd listner will not exeecute.
+
+//************** preventDefault : To stop default behaviour of any element, like after click on <a> tag opens new tab always, but with help of preventDefault() we can stop this.
+
+//********************** The "use strict" Directive ***************/
+
+// "use strict"; Defines that JavaScript code should be executed in "strict mode".
+
+// The purpose of "use strict" is to indicate that the code should be executed in "strict mode".
+
+// Strict mode makes it easier to write "secure" JavaScript.
+
+// Strict mode does not allow undeclared variables.
+
+// Example #1
+"use strict";
+myFunction();
+
+function myFunction() {
+    y = 3.14;   // This will also cause an error because y is not declared
+}
+//*************** typeof ********************/
+
+typeof "John"              // Returns "string"
+typeof 3.14                // Returns "number"
+typeof true                // Returns "boolean"
+typeof false               // Returns "boolean"
+typeof x                   // Returns "undefined" (if x has no value)
+typeof function myFunc() { }   // Returns "function"
