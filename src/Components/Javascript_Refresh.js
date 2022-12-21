@@ -543,13 +543,13 @@ createDatas({ name: "Vivek", profession: "SE" })
 
 // In (Async & Await) always return Promise and call function run asynchronously and not wait for completion.
 
-async function datas(){
+async function datas() {
     console.log("first console");
     const response = await fetch('https://api.github.com/users');
-        console.log("API called");
-        const users = await response.json();
-        console.log("users resolved");
-        return users;
+    console.log("API called");
+    const users = await response.json();
+    console.log("users resolved");
+    return users;
 }
 
 console.log("Before calling async");
@@ -571,7 +571,7 @@ try {
     throw new Error(error); // throw error if we get in code.
     console.log("Testing try/catch." + error); // show error in console as text not error.
 }
-finally{
+finally {
     console.log("Finally will always run, if executed 'try' or 'catch' any case.");
 }
 // With the help of try/catch we can track error and stop code break.
@@ -587,8 +587,8 @@ let userDetails = {
 
 }
 
-let printDetails = function(state, country) {
-    console.log(this.name +" "+ state +" "+ country);
+let printDetails = function (state, country) {
+    console.log(this.name + " " + state + " " + country);
 }
 printDetails.call(userDetails, "Noida", "India"); // We can pass any number of arguments in call();
 
@@ -598,7 +598,7 @@ let userDetails2 = {
     designation: "Software Engineer",
 }
 // function borrowing
-printDetails.call(userDetails2,"delhi","India");
+printDetails.call(userDetails2, "delhi", "India");
 // call is magic function: With the call() method, you can write a method that can be used on different objects.
 // we do not need to define function (printDetails) each time for same type of use case (object), just share diffrent object
 // with help of call function.
@@ -636,3 +636,55 @@ funcStore();
 console.log(funcStore);
 
 // With the help of bind() we can create copy of our function and we can invoke later.
+
+/************************** Memoization ***********************/
+// Implementing Memoization in JavaScript.
+// Memoization is Optimization techniques that can be used to reduce.
+// time-consuming calculations by saving previous input to something called cache and
+// returning the result from it.
+
+let sum = 0;
+const calc = (n) => {
+    for (let i = 0; i <= n; i++) {
+        sum += i;
+    }
+    return sum;
+}
+
+// console.time();
+// console.log(calc(5));
+// console.timeEnd();
+
+const memoize = (func) => {
+    let cache = {};
+    return function (...args) {
+        let n = args[0];
+        if (n in cache) {
+            console.log("cache");
+            return cache[n];
+        } else {
+            let result = func(n);
+            console.log("calculating fist time");
+            cache[n] = result;
+            return result;
+        }
+    }
+}
+// First call...
+console.time();
+const effcient = memoize(calc);
+console.log(effcient(5));
+console.timeEnd();
+// Second call... (to check caching and reuability).
+console.time();
+console.log(effcient(6));
+console.timeEnd();
+
+// Save this program in .JS file and call from terminal like ($ node hello.js)
+
+// memoize is function accept function as argument and it's return as function (same behave like clouser). so that we need to store memoize value in variable (efficient) and call "efficient" as function with arguments. this arguments will use in inside function of memoize.
+
+// jab bhi koi function ek dusra funtion return karega to usko variable store karna padega, resulted function ko call karne ke liye. like above example.
+
+
+/********************************* Debouncing ************************************/
