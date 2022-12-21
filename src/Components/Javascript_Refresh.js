@@ -877,3 +877,5 @@ typeof true                // Returns "boolean"
 typeof false               // Returns "boolean"
 typeof x                   // Returns "undefined" (if x has no value)
 typeof function myFunc() { }   // Returns "function"
+
+//****************************** ***************************************/
