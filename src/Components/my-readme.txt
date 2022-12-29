@@ -11,7 +11,9 @@ Class based components
 9. In class based component always group all states in "state" object.
 
 10. Life Cycle Methods
-   1. componentDidMount() => Called once component mounted (was evaluated & rendered)
+   1. componentDidMount() => Called once component mounted (was evaluated & rendered), when the component
+                             will update then this will not called, only "componentDidUpdate" will called.
+
                              this is equvalent to useEffect(...,[])  => Every Effect funtion is executed when the component first is Mounted, but if you have no dependancy (empty dependacy array) then effect function only executed in that case.
       Note: useEffect() with empty dependancy is equvalent to componenetDidMount.
 
